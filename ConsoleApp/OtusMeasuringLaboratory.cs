@@ -11,18 +11,17 @@ public class OtusMeasuringLaboratory
     }
     public void MeasurePerformance(string testName, Action test)
     {
-        _stopwatch.Start();
+        _stopwatch.Restart();
         
         test();
         
         _stopwatch.Stop();
         
         TimeSpan ts = _stopwatch.Elapsed;        
-        string elapsedTime = String.Format("{0:00} сек:{1:00} милисек",
-            ts.Seconds, ts.Milliseconds);
+        string elapsedTime = ts.ToString();
         Console.WriteLine("Время работы " + elapsedTime);
 
-        logs.Add(Tuple.Create(testName, elapsedTime));
+        logs.Add(Tuple.Create(testName, "Время работы "+elapsedTime));
     }
 
     public void PrintLogs()
