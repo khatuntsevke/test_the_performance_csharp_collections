@@ -1,4 +1,7 @@
-﻿namespace MyApp
+﻿using System.Collections.Generic;
+using System.Xml.Linq;
+
+namespace MyApp
 {    
     internal class Program
     {
@@ -6,32 +9,26 @@
         {
             var laboratory = new OtusMeasuringLaboratory();
             
-            var testList = new TestList();
-            Action testListInit = testList.InitAndFill;
-            Action testListRAccess = testList.RandomItemAccess;
-            Action testListFindEl = testList.FindAllElementsByCondition;
-             
-            laboratory.MeasurePerformance("List initialize", testListInit);
-            laboratory.MeasurePerformance("List random access", testListRAccess);
-            laboratory.MeasurePerformance("List search an element by condition", testListFindEl);
+            var testList = new TestList();             
+            laboratory.MeasurePerformance("List, initialize", testList.InitAndFill);
+            laboratory.MeasurePerformance("List, random access", testList.RandomItemAccess);
+            laboratory.MeasurePerformance("List, search an element by condition", testList.FindAllElementsByCondition);
+            laboratory.MeasurePerformance("List, search an element by condition with fast console", testList.FindAllElementsByConditionWithFastConsole);
+            laboratory.MeasurePerformance("List, search an element by condition with accumulation list", testList.FindAllElementsByConditionWithAccumulationList);
 
             var testArrayList = new TestArrayList();
-            Action testArrayListInit = testArrayList.InitAndFill;
-            Action testArrayListRAccess = testArrayList.RandomItemAccess;
-            Action testArrayListFindEl = testArrayList.FindAllElementsByCondition;
+            laboratory.MeasurePerformance("ArrayList, initialize", testArrayList.InitAndFill);
+            laboratory.MeasurePerformance("ArrayList, random access", testArrayList.RandomItemAccess);
+            laboratory.MeasurePerformance("ArrayList, search an element by condition", testArrayList.FindAllElementsByCondition);
+            laboratory.MeasurePerformance("ArrayList, search an element by condition with fast console", testArrayList.FindAllElementsByConditionWithFastConsole);
+            laboratory.MeasurePerformance("ArrayList, search an element by condition with accumulation list", testArrayList.FindAllElementsByConditionWithAccumulationList);
 
-            laboratory.MeasurePerformance("ArrayList initialize", testArrayListInit);
-            laboratory.MeasurePerformance("ArrayList random access", testArrayListRAccess);
-            laboratory.MeasurePerformance("ArrayList search an element by condition", testArrayListFindEl);
-
-            var testLinkedList = new TestArrayList();
-            Action testLinkedListInit = testLinkedList.InitAndFill;
-            Action testLinkedListRAccess = testLinkedList.RandomItemAccess;
-            Action testLinkedListFindEl = testLinkedList.FindAllElementsByCondition;
-
-            laboratory.MeasurePerformance("LinkedList initialization", testLinkedListInit);
-            laboratory.MeasurePerformance("LinkedList random access", testLinkedListRAccess);
-            laboratory.MeasurePerformance("LinkedList search an element by condition", testLinkedListFindEl);
+            var testLinkedList = new TestLinkedList();
+            laboratory.MeasurePerformance("LinkedList, initialize", testLinkedList.InitAndFill);
+            laboratory.MeasurePerformance("LinkedList, random access", testLinkedList.RandomItemAccess);
+            laboratory.MeasurePerformance("LinkedList, search an element by condition", testLinkedList.FindAllElementsByCondition);
+            laboratory.MeasurePerformance("LinkedList, search an element by condition with fast console", testLinkedList.FindAllElementsByConditionWithFastConsole);
+            laboratory.MeasurePerformance("LinkedList, search an element by condition with accumulation list", testLinkedList.FindAllElementsByConditionWithAccumulationList);
 
             laboratory.PrintLogs();
         }
